@@ -5,7 +5,7 @@ import TrackList from '../TrackList/TrackList.js';
 class SearchResults extends React.Component{
   render(){
     return(<div className="SearchResults">
-      <TrackList tracks = {this.props.searchResults}/>
+      <TrackList onAdd ={this.props.onAdd} tracks = {this.props.searchResults}/>
       <h2>Results</h2>
     </div>);
   }
