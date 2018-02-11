@@ -29,7 +29,7 @@ let track2 = {
 };
 
 let playlist = {
-  name: 'play list1',
+  name: 'First Playlist',
   tracks: [track1, track, track]
 };
 
@@ -44,10 +44,10 @@ class App extends React.Component {
         playlist: playlist
       };
       this.addTrack = this.addTrack.bind(this);
+      this.removeTrack = this.removeTrack.bind(this);
   }
 
   addTrack(track){
-    debugger;
     const selectedTrack = this.state.playlist.tracks.find(
       playListTrack => playListTrack.id === track.id
     );
@@ -56,7 +56,17 @@ class App extends React.Component {
       playlist.tracks.push(track);
       this.setState({playlist: playlist});
     }
+  }
 
+  removeTrack(track){
+    const selectedTrackIndex = this.state.playlist.tracks.findIndex(
+      playListTrack => playListTrack.id === track.id
+    );
+
+    if(selectedTrackIndex >= 0){
+      playlist.tracks.splice(selectedTrackIndex, 1);
+      this.setState({playlist: playlist});
+    }
   }
 
   render() {
@@ -67,7 +77,7 @@ class App extends React.Component {
     <div className="App">
       <SearchResults onAdd ={this.addTrack} searchResults ={this.state.searchResults} />
       <div className="App-playlist">
-      <Playlist playlist = {this.state.playlist}/>
+      <Playlist onRemove ={this.removeTrack}  playlist = {this.state.playlist}/>
       </div>
     </div>
   </div>

@@ -5,8 +5,8 @@ import TrackList from '../TrackList/TrackList.js';
 class Playlist extends React.Component{
   render(){
   return (<div className="Playlist">
-    <input value='New Playlist'/>
-    <TrackList tracks = {this.props.playlist.tracks}/>
+    <input value={this.props.playlist.name}/>
+    <TrackList onRemove ={this.props.onRemove} tracks = {this.props.playlist.tracks}/>
     <a className="Playlist-save">SAVE TO SPOTIFY</a>
   </div>);
   }
