@@ -34,7 +34,7 @@ removeTrack(){
       <p>{this.props.track.Artist} | {this.props.track.Album}</p>
     </div>
     {
-      this.renderAction(this.props.track.isRemoval)
+      this.renderAction(this.props.isRemoval)
     }
 </div>
     );

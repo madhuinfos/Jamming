@@ -7,29 +7,26 @@ import Spotify from '../../util/Spotify.js';
 
 let track = {
   uri: '',
-  id: 1,
-  name: 'song1',
-  artist: 'song artist',
-  album: 'song album',
-  isRemoval: true
+  ID: 1,
+  Name: 'song1',
+  Artist: 'song artist',
+  Album: 'song album'
 };
 
 let track1 = {
   uri: '',
-  id: 2,
-  name: 'song2',
-  artist: 'song2 artist',
-  album: 'song2 album',
-  isRemoval: false
+  ID: 2,
+  Name: 'song2',
+  Artist: 'song2 artist',
+  Album: 'song2 album'
 };
 
 let track2 = {
   uri: '',
-  id: 3,
-  name: 'song3',
-  artist: 'song3 artist',
-  album: 'song3 album',
-  isRemoval: true
+  ID: 3,
+  Name: 'song3',
+  Artist: 'song3 artist',
+  Album: 'song3 album'
 };
 
 let playlist = {
