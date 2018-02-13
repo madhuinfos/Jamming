@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import Playlist from '../Playlist/Playlist.js';
+import Spotify from '../../util/Spotify.js';
 
 let track = {
   uri: '',
@@ -89,6 +90,7 @@ class App extends React.Component {
   };
 
   search(searchTerm){
+    Spotify.search(searchTerm).then(x => console.log('request executed'));
     console.log(searchTerm);
   }
 
@@ -100,7 +102,7 @@ class App extends React.Component {
     <div className="App">
       <SearchResults onAdd ={this.addTrack} searchResults ={this.state.searchResults} />
       <div className="App-playlist">
-      <Playlist onSave = {this.savePlayList} onNameChange = {this.updatePlaylistName} onRemove ={this.removeTrack}  playlist = {this.state.playlist}/>
+        <Playlist onSave = {this.savePlayList} onNameChange = {this.updatePlaylistName} onRemove ={this.removeTrack}  playlist = {this.state.playlist}/>
       </div>
     </div>
   </div>
