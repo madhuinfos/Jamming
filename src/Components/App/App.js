@@ -90,7 +90,11 @@ class App extends React.Component {
   };
 
   search(searchTerm){
-    Spotify.search(searchTerm).then(x => console.log('request executed'));
+    Spotify.search(searchTerm).then(
+      tracks => this.setState({
+        searchResults : tracks
+      })
+    );
     console.log(searchTerm);
   }
 

@@ -10,7 +10,7 @@ const Spotify ={
     let expiration = url.match(/expires_in=([^&]*)/);
 
     if(token && expiration){
-      accessToken = token;
+      accessToken = token[1];
 
       window.setTimeout(() => accessToken = '', expiration[1] * 1000);
       window.history.pushState('Access Token', null, '/');
@@ -27,7 +27,7 @@ const Spotify ={
         window.location = "https://accounts.spotify.com/authorize?client_id=" +clientID+"&response_type=token&scope=playlist-modify-public&redirect_uri="+redirectUri;
       }
       else {
-          return accessToken[1];
+          return accessToken;
       }
     }
   },
@@ -42,7 +42,18 @@ const Spotify ={
       });
       if(response.ok){
         let jsonResponse = await response.json();
-        console.log(jsonResponse);
+        if(jsonResponse){
+          return jsonResponse.tracks.items.map(track => ({
+            ID: track.id,
+            Name: track.name,
+            Artist: track.artists[0].name,
+            Album: track.album.name,
+            URI: track.uri
+          }));
+        }
+        else{
+          return [];
+        }
       }
     }
     catch(e){
