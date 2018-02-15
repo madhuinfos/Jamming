@@ -31,10 +31,10 @@ let track2 = {
 
 let playlist = {
   name: 'First Playlist',
-  tracks: [track1, track, track]
+  tracks: []
 };
 
-let tracks = [track, track1, track1, track, track2];
+let tracks = [];
 
 
 class App extends React.Component {
@@ -53,7 +53,7 @@ class App extends React.Component {
 
   addTrack(track){
     const selectedTrack = this.state.playlist.tracks.find(
-      playListTrack => playListTrack.id === track.id
+      playListTrack => playListTrack.ID === track.ID
     );
 
     if(selectedTrack === undefined){
@@ -65,7 +65,7 @@ class App extends React.Component {
 
   removeTrack(track){
     const selectedTrackIndex = this.state.playlist.tracks.findIndex(
-      playListTrack => playListTrack.id === track.id
+      playListTrack => playListTrack.ID === track.ID
     );
 
     let newPlaylist = {...this.state.playlist};
@@ -83,7 +83,15 @@ class App extends React.Component {
   };
 
   savePlayList(){
-    let trackURIs = this.state.playlist.tracks.map(x => x.uri);
+    let trackURIs = this.state.playlist.tracks.map(x => x.URI);
+     Spotify.savePlayList(this.state.playlist.name, trackURIs).then(
+       this.setState({
+         playlist: {
+           name: 'New Playlist',
+           tracks: []
+         }
+       })
+     );
   };
 
   search(searchTerm){

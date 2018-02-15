@@ -1,5 +1,5 @@
 
-let accessToken = '';
+let accessToken ;
 let clientID = 'ccebe5f855004815bbcac56f822da2de';
 let redirectUri = 'http://localhost:3000/';
 
@@ -59,8 +59,53 @@ const Spotify ={
     catch(e){
       console.log(e);
     }
-}
+},
 
+async savePlayList(playListName, tracksUris){
+  if(!playListName && !tracksUris && tracksUris.length <= 0){
+    console.log('invalid arguments for save playlist')
+    return;
+  }
+  let token = Spotify.getAccessToken();
+  let headers = {
+    'Authorization': 'Bearer ' +token };
+  let userID = '';
+  let response = await fetch('https://api.spotify.com/v1/me', {headers: headers});
+  if(response.ok){
+    let jsonResponse = await response.json();
+    userID = jsonResponse.id;
+    console.log(userID);
+  }
+  headers = {
+    'Authorization': 'Bearer ' +token,
+    "Content-type": "application/json"
+  };
+  let playlistID = '';
+  response = await fetch('https://api.spotify.com/v1/users/' + userID +'/playlists', {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      name: playListName
+    })
+  });
+  if(response.ok){
+    let jsonResponse = await response.json();
+    playlistID = jsonResponse.id;
+    console.log(playlistID);
+  }
+
+  response = await fetch('https://api.spotify.com/v1/users/' + userID + '/playlists/'+ playlistID +'/tracks',{
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      uris : tracksUris
+    })
+  });
+  if(response.ok){
+    let jsonResponse = await response.json();
+    playlistID = jsonResponse.id;
+  }
+}
 };
 
 export default Spotify;
