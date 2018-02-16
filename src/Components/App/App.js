@@ -5,29 +5,6 @@ import SearchResults from '../SearchResults/SearchResults.js';
 import Playlist from '../Playlist/Playlist.js';
 import Spotify from '../../util/Spotify.js';
 
-let track = {
-  uri: '',
-  ID: 1,
-  Name: 'song1',
-  Artist: 'song artist',
-  Album: 'song album'
-};
-
-let track1 = {
-  uri: '',
-  ID: 2,
-  Name: 'song2',
-  Artist: 'song2 artist',
-  Album: 'song2 album'
-};
-
-let track2 = {
-  uri: '',
-  ID: 3,
-  Name: 'song3',
-  Artist: 'song3 artist',
-  Album: 'song3 album'
-};
 
 let playlist = {
   name: 'First Playlist',
@@ -111,8 +88,7 @@ class App extends React.Component {
     <SearchBar onSearch ={this.search} />
     <div className="App-playlist">
       <SearchResults onAdd ={this.addTrack} searchResults ={this.state.searchResults} />
-
-        <Playlist onSave = {this.savePlayList} onNameChange = {this.updatePlaylistName} onRemove ={this.removeTrack}  playlist = {this.state.playlist}/>
+      <Playlist onSave = {this.savePlayList} onNameChange = {this.updatePlaylistName} onRemove ={this.removeTrack}  playlist = {this.state.playlist}/>
       </div>
     </div>
   </div>
