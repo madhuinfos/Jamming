@@ -107,10 +107,11 @@ class App extends React.Component {
     return (
   <div>
     <h1>Ja<span className="highlight">mmm</span>ing</h1>
-    <SearchBar onSearch ={this.search} />
     <div className="App">
+    <SearchBar onSearch ={this.search} />
+    <div className="App-playlist">
       <SearchResults onAdd ={this.addTrack} searchResults ={this.state.searchResults} />
-      <div className="App-playlist">
+
         <Playlist onSave = {this.savePlayList} onNameChange = {this.updatePlaylistName} onRemove ={this.removeTrack}  playlist = {this.state.playlist}/>
       </div>
     </div>

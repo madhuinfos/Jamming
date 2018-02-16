@@ -1,7 +1,7 @@
 
 let accessToken ;
 let clientID = 'ccebe5f855004815bbcac56f822da2de';
-let redirectUri = 'http://localhost:3000/';
+let redirectUri = 'http://imperfect-pollution.surge.sh/';
 
 const Spotify ={
   readAccessToken(){
