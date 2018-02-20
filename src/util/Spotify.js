@@ -1,7 +1,7 @@
 
 let accessToken ;
 let clientID = 'ccebe5f855004815bbcac56f822da2de';
-let redirectUri = 'http://imperfect-pollution.surge.sh/';
+let redirectUri = 'http://localhost:3000/';
 
 const Spotify ={
   readAccessToken(){
@@ -35,7 +35,7 @@ const Spotify ={
   async search(searchTerm){
     try{
       let token = Spotify.getAccessToken();
-      let response = await fetch('https://api.spotify.com/v1/search?type=track&q='+searchTerm, {
+        let response = await fetch('https://api.spotify.com/v1/search?type=track&q='+searchTerm, {
         headers: {
           'Authorization': 'Bearer ' +token
         }
@@ -48,7 +48,8 @@ const Spotify ={
             Name: track.name,
             Artist: track.artists[0].name,
             Album: track.album.name,
-            URI: track.uri
+            URI: track.uri,
+            previewUrl: track.preview_url
           }));
         }
         else{

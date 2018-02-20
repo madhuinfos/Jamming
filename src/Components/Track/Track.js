@@ -18,6 +18,13 @@ class Track extends React.Component{
    }
  };
 
+ renderPreview(previewUrl){
+   if(previewUrl){
+     console.log(previewUrl);
+     return <audio src= {previewUrl} controls> </audio>;
+   }
+ };
+
 addTrack(){
   this.props.onAdd(this.props.track);
 };
@@ -34,8 +41,13 @@ removeTrack(){
       <p>{this.props.track.Artist} | {this.props.track.Album}</p>
     </div>
     {
+      this.renderPreview(this.props.track.previewUrl)
+    }
+    <div>
+    {
       this.renderAction(this.props.isRemoval)
     }
+    </div>
 </div>
     );
   }
